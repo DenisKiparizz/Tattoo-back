@@ -1,8 +1,8 @@
-package com.tattoo.com.service;
+package com.tattoo.com.service.impl;
 
-import com.tattoo.com.entity.ERole;
-import com.tattoo.com.entity.Role;
-import com.tattoo.com.entity.User;
+import com.tattoo.com.entity.user.ERole;
+import com.tattoo.com.entity.user.Role;
+import com.tattoo.com.entity.user.User;
 import com.tattoo.com.payload.request.LoginRequest;
 import com.tattoo.com.payload.request.SignupRequest;
 import com.tattoo.com.payload.response.JwtResponse;

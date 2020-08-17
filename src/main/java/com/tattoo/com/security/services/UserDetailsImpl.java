@@ -1,7 +1,7 @@
 package com.tattoo.com.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tattoo.com.entity.User;
+import com.tattoo.com.entity.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package com.tattoo.com.entity;
+package com.tattoo.com.entity.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

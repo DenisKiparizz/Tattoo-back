@@ -5,7 +5,7 @@ import com.tattoo.com.payload.request.SignupRequest;
 import com.tattoo.com.payload.response.JwtResponse;
 import com.tattoo.com.payload.response.MessageResponse;
 import com.tattoo.com.repository.UserRepository;
-import com.tattoo.com.service.AuthService;
+import com.tattoo.com.service.impl.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,17 +22,15 @@ public class AuthController {
     private final UserRepository userRepository;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(
-            @Valid
-            @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@Valid
+                                              @RequestBody LoginRequest loginRequest) {
         JwtResponse jwtResponse = authService.login(loginRequest);
         return ResponseEntity.ok(jwtResponse);
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(
-            @Valid
-            @RequestBody SignupRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(@Valid
+                                          @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()

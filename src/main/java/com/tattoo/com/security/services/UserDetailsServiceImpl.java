@@ -1,6 +1,6 @@
 package com.tattoo.com.security.services;
 
-import com.tattoo.com.entity.User;
+import com.tattoo.com.entity.user.User;
 import com.tattoo.com.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

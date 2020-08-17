@@ -16,6 +16,8 @@
 
     <properties>
         <java.version>11</java.version>
+        <org.modelmapper>2.3.2</org.modelmapper>
+        <swagger>2.9.2</swagger>
     </properties>
 
     <dependencies>
@@ -45,6 +47,24 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>${org.modelmapper}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger}</version>
         </dependency>
 
         <dependency>
