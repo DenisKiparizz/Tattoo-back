@@ -94,11 +94,22 @@
             <column name="email" value="solodkiy_denis46@mail.ru"/>
             <column name="password" value="$2a$10$.wGU/2EHJjejfMyVpjAu9.1spwO.QfgHUshOhwjQHzIe78HTiPHMy"/>
         </insert>
+
+        <insert tableName="users">
+            <column name="username" value="Denis"/>
+            <column name="email" value="denis@mail.ru"/>
+            <column name="password" value="$2a$10$O5I2dTnlbIApBWA4UhEo1uZkG0b0NAeQ3C9w6/wpMU19Hv5yeQTEi"/>
+        </insert>
     </changeSet>
 
     <changeSet id="1.0.7" author="Denis Solodkiy">
         <insert tableName="user_roles">
             <column name="user_id" value="1"/>
+            <column name="role_id" value="3"/>
+        </insert>
+
+        <insert tableName="user_roles">
+            <column name="user_id" value="2"/>
             <column name="role_id" value="3"/>
         </insert>
     </changeSet>

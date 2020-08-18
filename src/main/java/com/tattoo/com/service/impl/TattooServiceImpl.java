@@ -60,6 +60,13 @@ public class TattooServiceImpl implements TattooService {
     }
 
     @Transactional(readOnly = true)
+    public List<TattooDto> getByStyleId(Long style) {
+        return mapper.mapListToDto(tattooRepository.findAll().stream()
+                .filter(tattoo -> tattoo.getStyle().getId().equals(style))
+                .collect(Collectors.toList()));
+    }
+
+    @Transactional(readOnly = true)
     public List<TattooDto> findByPicture(String picture) {
         return mapper.mapListToDto(tattooRepository.findAll().stream()
                 .filter(tattoo -> tattoo.getPicture().equalsIgnoreCase(picture))

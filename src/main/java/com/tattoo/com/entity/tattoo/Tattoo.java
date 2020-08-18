@@ -1,11 +1,13 @@
 package com.tattoo.com.entity.tattoo;
 
-import com.tattoo.com.entity.interfaces.TattooInterface;
+import com.tattoo.com.entity.order.Order;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,4 +39,8 @@ public class Tattoo{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "style_id")
     private Style style;
+
+    @OneToMany(fetch = FetchType.LAZY,
+            mappedBy = "tattoo", cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
 }

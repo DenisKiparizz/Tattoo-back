@@ -43,4 +43,9 @@ public class TattooController {
                        @PathVariable Long id) {
         tattooService.delete(id);
     }
+
+    @GetMapping("{id}")
+    public List<TattooDto> getByStyleId(@PathVariable Long id) {
+        return tattooService.getByStyleId(id);
+    }
 }

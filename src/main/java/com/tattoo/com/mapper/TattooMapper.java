@@ -6,6 +6,7 @@ import com.tattoo.com.entity.tattoo.Tattoo;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,8 +18,8 @@ public class TattooMapper {
     public final StyleMapper styleMapper;
 
     public TattooDto setTattooRequestParam(
-            TattooRequest tattooRequest
-            , Tattoo tattoo) {
+            TattooRequest tattooRequest,
+            Tattoo tattoo) {
         tattoo.setStyle(styleMapper.toResource(tattooRequest.getStyle()));
         modelMapper.map(tattooRequest, tattoo);
         TattooDto tattooDto = modelMapper.map(tattooRequest, TattooDto.class);

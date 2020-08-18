@@ -1,0 +1,57 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="6.1.3" author="Denis Solodkiy">
+        <createTable tableName="orders">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="part_of_body" type="VARCHAR(30)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="price" type="DOUBLE">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="tattoo_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="tattoo_id" references="tattoos(id)"/>
+            </column>
+
+        </createTable>
+        <rollback>
+            <dropTable tableName="orders"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="6.1.5" author="Denis Solodkiy">
+        <createTable tableName="order_user">
+            <column name="order_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6.0.4" author="Denis Solodkiy">
+        <addForeignKeyConstraint baseColumnNames="order_id"
+                                 baseTableName="order_user"
+                                 constraintName="fk_order_user_order"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="orders"/>
+    </changeSet>
+
+    <changeSet id="6.0.3" author="Denis Solodkiy">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="order_user"
+                                 constraintName="fk_order_user_users"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+</databaseChangeLog>
