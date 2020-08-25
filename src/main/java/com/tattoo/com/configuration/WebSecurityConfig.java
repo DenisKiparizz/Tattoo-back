@@ -4,7 +4,6 @@ import com.tattoo.com.security.jwt.AuthEntryPointJwt;
 import com.tattoo.com.security.jwt.AuthTokenFilter;
 import com.tattoo.com.security.services.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -65,6 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/tattoo/**").permitAll()
+                .antMatchers("/user/**").permitAll()
                 .antMatchers("/order/**").permitAll()
                 .antMatchers("/style/**").permitAll()
                 .antMatchers("/api/test/**").permitAll()

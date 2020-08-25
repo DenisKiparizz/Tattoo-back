@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,6 +20,8 @@ public class OrderDto {
     private EPartOfBody part;
     @ApiModelProperty(hidden = true)
     private Double price;
+    @ApiModelProperty(hidden = true)
+    private Date created;
     private Long tattooId;
     private Long userId;
 }

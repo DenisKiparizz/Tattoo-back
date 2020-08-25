@@ -9,12 +9,16 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="part_of_body" type="VARCHAR(30)">
+            <column name="part" type="VARCHAR(30)">
                 <constraints nullable="false" unique="false"/>
             </column>
 
             <column name="price" type="DOUBLE">
                 <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="created" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
+                <constraints nullable="true"/>
             </column>
 
             <column name="tattoo_id" type="BIGINT">

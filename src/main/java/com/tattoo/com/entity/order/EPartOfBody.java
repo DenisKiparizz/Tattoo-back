@@ -5,7 +5,7 @@ public enum EPartOfBody {
     LEG(1.3),
     ARM(0.4),
     HAND(1.1),
-    STOMACH(0.9),
+    STOMACH(1.9),
     CHEST(3.2),
     NECK(2.1);
 

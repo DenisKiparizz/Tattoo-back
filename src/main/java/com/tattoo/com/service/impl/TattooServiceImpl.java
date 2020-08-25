@@ -72,4 +72,10 @@ public class TattooServiceImpl implements TattooService {
                 .filter(tattoo -> tattoo.getPicture().equalsIgnoreCase(picture))
                 .collect(Collectors.toList()));
     }
+
+    @Transactional(readOnly = true)
+    public TattooDto getById(Long id) {
+        return mapper.toDto(tattooRepository.findById(id)
+                .orElseThrow(() -> new TattooNotFoundException(id)));
+    }
 }

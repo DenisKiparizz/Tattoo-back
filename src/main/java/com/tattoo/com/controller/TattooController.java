@@ -25,7 +25,7 @@ public class TattooController {
 
     @PostMapping
 //    @CreateTattooApi
-    public TattooDto create(TattooDto tattoo) {
+    public TattooDto create(@RequestBody TattooDto tattoo) {
         return tattooService.create(tattoo);
     }
 
@@ -33,7 +33,7 @@ public class TattooController {
 //    @UpdateTattooApi
     public TattooDto update(@ApiParam(value = "Tattoo ID. Make sure that value is positive", required = true, example = "1")
                             @PathVariable Long id,
-                            TattooRequest tattooRequest) {
+                            @RequestBody TattooRequest tattooRequest) {
         return tattooService.update(id, tattooRequest);
     }
 
@@ -47,5 +47,10 @@ public class TattooController {
     @GetMapping("{id}")
     public List<TattooDto> getByStyleId(@PathVariable Long id) {
         return tattooService.getByStyleId(id);
+    }
+
+    @GetMapping("/tattoo/{id}")
+    public TattooDto getById(@PathVariable Long id) {
+        return tattooService.getById(id);
     }
 }

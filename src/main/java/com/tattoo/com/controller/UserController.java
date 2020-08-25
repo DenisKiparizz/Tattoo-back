@@ -1,7 +1,7 @@
 package com.tattoo.com.controller;
 
-import com.tattoo.com.dto.OrderDto;
-import com.tattoo.com.service.impl.OrderServiceImpl;
+import com.tattoo.com.dto.UserDto;
+import com.tattoo.com.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,23 +10,18 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("order")
-public class OrderController {
-    private final OrderServiceImpl service;
+@RequestMapping("user")
+public class UserController {
+    private final UserServiceImpl service;
 
     @GetMapping
-    public List<OrderDto> getAll() {
+    public List<UserDto> getAll() {
         return service.getAll();
     }
 
     @GetMapping("{id}")
-    public List<OrderDto> getByUserId(@PathVariable Long id) {
-        return service.getByUserId(id);
-    }
-
-    @PostMapping
-    public void save(@RequestBody OrderDto order) {
-        service.add(order);
+    public UserDto getById(@PathVariable Long id) {
+        return service.getById(id);
     }
 
     @DeleteMapping("{id}")

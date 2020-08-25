@@ -45,9 +45,9 @@ public class TattooValidation implements ValidatorInterface<TattooInterface> {
     }
 
     private void checkCorrectFields(String tattoo) {
-        if (!isOnlyLetter(tattoo)) {
-            throw new WrongModelException(String.format("Unacceptable characters: %s", tattoo));
-        }
+//        if (!isOnlyLetter(tattoo)) {
+//            throw new WrongModelException(String.format("Unacceptable characters: %s", tattoo));
+//        }
     }
 
     @Override
