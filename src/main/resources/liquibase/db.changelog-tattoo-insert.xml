@@ -5,7 +5,7 @@
 
     <changeSet id="3.0.2" author="Denis Solodkiy">
         <insert tableName="style">
-            <column name="style" value="JAPAN"/>
+            <column name="style" value="JAPANESE"/>
         </insert>
 
         <insert tableName="style">
@@ -15,6 +15,11 @@
         <insert tableName="style">
             <column name="style" value="OLD SCHOOL"/>
         </insert>
+
+        <insert tableName="style">
+            <column name="style" value="CHICANO"/>
+        </insert>
+
     </changeSet>
 
     <changeSet id="3.0.4" author="Denis Solodkiy">
@@ -165,6 +170,36 @@
                     value="https://www.askideas.com/wp-content/uploads/2017/06/Mandala-Flower-And-Nautical-Star-Tattoo-On-Arm-Sleeve.jpg"/>
             <column name="cost" value="200"/>
             <column name="style_id" value="2"/>
+        </insert>
+
+        <insert tableName="tattoos">
+            <column name="picture" value="Clown"/>
+            <column name="description"
+                    value="Whether it’s the jester or the smile now, cry later faces, the face of the clown has long been a subject for Chicano tattooing. The clown Chicano tattoo meaning revolves around the idea of not showing weakness. Smile now and cry later and this is an attitude that had be taken on when times were tough in the neighborhood. The Chicano people also viewed the clown as a symbol of playing games or potentially gambling with your life."/>
+            <column name="picture_url"
+                    value="https://findtattoodesign.net/storage/7388/chicano-clown-small.jpg"/>
+            <column name="cost" value="220"/>
+            <column name="style_id" value="4"/>
+        </insert>
+
+        <insert tableName="tattoos">
+            <column name="picture" value="Bandida"/>
+            <column name="description"
+                    value="The Bandida, or the women that are tattooed on a Chicano’s body is a big part of the Chicano culture. American icons like Marilyn Monroe or general Mexican women are usually chosen because of their beauty. You might even see the above women with gang tattoos adorning their body. Often the Bandida tattoo is accompanied by dollars, skulls and guns to symbolize the frailty of life."/>
+            <column name="picture_url"
+                    value="https://i.pinimg.com/originals/71/0c/2b/710c2b7a5fea17a82ba5d53799d3696c.jpg"/>
+            <column name="cost" value="300"/>
+            <column name="style_id" value="4"/>
+        </insert>
+
+        <insert tableName="tattoos">
+            <column name="picture" value="Low Rider"/>
+            <column name="description"
+                    value="In Chicano culture and art, cars are very important. Much of is an art form but it is also a status symbol. In most cases you will see the car in a low rider form where the suspension is lowered on the car so it is barely above the ground."/>
+            <column name="picture_url"
+                    value="https://i.pinimg.com/originals/31/8d/00/318d008ae4a14a524976559bce60b3a6.jpg"/>
+            <column name="cost" value="190"/>
+            <column name="style_id" value="4"/>
         </insert>
 
     </changeSet>
