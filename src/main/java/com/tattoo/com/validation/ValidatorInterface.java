@@ -6,5 +6,4 @@ public interface ValidatorInterface<T> {
 
     void checkPositiveId(Long id);
 
-    boolean isOnlyLetter(String name);
 }

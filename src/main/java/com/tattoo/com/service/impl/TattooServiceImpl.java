@@ -26,11 +26,13 @@ public class TattooServiceImpl implements TattooService {
     public final TattooValidation validation;
     public final StyleMapper styleMapper;
 
+    @Override
     @Transactional(readOnly = true)
     public List<TattooDto> getAll() {
         return mapper.mapListToDto(tattooRepository.findAll());
     }
 
+    @Override
     public TattooDto create(TattooDto tattooDto) {
         validation.validate(tattooDto);
         Tattoo tattoo = mapper.toResource(tattooDto);
@@ -38,6 +40,7 @@ public class TattooServiceImpl implements TattooService {
         return mapper.toDto(save);
     }
 
+    @Override
     public TattooDto update(Long id,
                             TattooRequest request) {
         validation.checkPositiveId(id);
@@ -47,18 +50,13 @@ public class TattooServiceImpl implements TattooService {
                 .orElseThrow(() -> new TattooNotFoundException(id));
     }
 
+    @Override
     public void delete(Long id) {
         validation.checkPositiveId(id);
         tattooRepository.deleteById(id);
     }
 
-    @Transactional(readOnly = true)
-    public List<TattooDto> findByStyle(String style) {
-        return mapper.mapListToDto(tattooRepository.findAll().stream()
-                .filter(tattoo -> tattoo.getStyle().getStyle().equalsIgnoreCase(style))
-                .collect(Collectors.toList()));
-    }
-
+    @Override
     @Transactional(readOnly = true)
     public List<TattooDto> getByStyleId(Long style) {
         return mapper.mapListToDto(tattooRepository.findAll().stream()
@@ -66,13 +64,7 @@ public class TattooServiceImpl implements TattooService {
                 .collect(Collectors.toList()));
     }
 
-    @Transactional(readOnly = true)
-    public List<TattooDto> findByPicture(String picture) {
-        return mapper.mapListToDto(tattooRepository.findAll().stream()
-                .filter(tattoo -> tattoo.getPicture().equalsIgnoreCase(picture))
-                .collect(Collectors.toList()));
-    }
-
+    @Override
     @Transactional(readOnly = true)
     public TattooDto getById(Long id) {
         return mapper.toDto(tattooRepository.findById(id)

@@ -1,14 +1,10 @@
 package com.tattoo.com.mapper;
 
 import com.tattoo.com.dto.RoleDto;
-import com.tattoo.com.dto.UserDto;
 import com.tattoo.com.entity.user.Role;
-import com.tattoo.com.entity.user.User;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 

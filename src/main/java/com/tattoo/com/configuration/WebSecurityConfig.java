@@ -21,7 +21,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(
+        securedEnabled = true,
+        jsr250Enabled = true,
+        prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsServiceImpl userDetailsService;
 
@@ -63,11 +66,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/tattoo/**").permitAll()
-                .antMatchers("/user/**").permitAll()
-                .antMatchers("/order/**").permitAll()
-                .antMatchers("/style/**").permitAll()
-                .antMatchers("/api/test/**").permitAll()
+//                .antMatchers("/tattoo/**").permitAll()
+//                .antMatchers("/user/**").permitAll()
+//                .antMatchers("/style/**").permitAll()
+//                .antMatchers("/order/**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
