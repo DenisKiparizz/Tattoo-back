@@ -1,29 +1,25 @@
 package com.tattoo.com.dto;
 
-import com.tattoo.com.entity.order.EPartOfBody;
-import com.tattoo.com.entity.order.EStatus;
-import com.tattoo.com.entity.user.User;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDto {
+public class ReviewDto {
     @ApiModelProperty(hidden = true)
     private Long id;
-    private EPartOfBody part;
+    private String comment;
+    private Integer mark;
     @ApiModelProperty(hidden = true)
-    private Double price;
-    private EStatus status;
-    @ApiModelProperty(hidden = true)
-    private Date created;
-    private Long tattooId;
+    private LocalDate created;
+    private Long orderId;
     private Long userId;
 }

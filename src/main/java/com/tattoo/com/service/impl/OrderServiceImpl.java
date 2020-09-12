@@ -1,6 +1,7 @@
 package com.tattoo.com.service.impl;
 
 import com.tattoo.com.dto.OrderDto;
+import com.tattoo.com.entity.order.EStatus;
 import com.tattoo.com.entity.order.Order;
 import com.tattoo.com.entity.tattoo.Tattoo;
 import com.tattoo.com.entity.user.User;
@@ -46,6 +47,7 @@ public class OrderServiceImpl implements OrderService {
         Set<User> userSet = new HashSet<>();
         setUserForOrder(orderDto, userSet);
         Order order = mapper.toResource(orderDto);
+        order.setStatus(EStatus.ACTIVE);
         order.setUsers(userSet);
         setDefaultOrderValues(order);
         orderRepository.save(order);
@@ -93,6 +95,16 @@ public class OrderServiceImpl implements OrderService {
     public void delete(Long id) {
         orderValidation.checkPositiveId(id);
         orderRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateOrderStatusClose(Long id) {
+        orderRepository.findById(id)
+                .map(order -> {
+                    order.setStatus(EStatus.CLOSED);
+                    return order;
+                })
+                .orElseThrow(() -> new NullPointerException("Order not found"));
     }
 
     @Override

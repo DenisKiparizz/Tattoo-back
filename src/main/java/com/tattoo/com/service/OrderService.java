@@ -15,4 +15,6 @@ public interface OrderService {
 
     Double getTotalPrice(Long id);
 
+    void updateOrderStatusClose(Long id);
+
 }

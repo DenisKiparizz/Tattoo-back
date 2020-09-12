@@ -44,4 +44,10 @@ public class OrderController {
     public Double getTotalPrice(@PathVariable Long id) {
         return service.getTotalPrice(id);
     }
+
+    @PutMapping("{id}")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void updateOrderStatusClose(@PathVariable Long id) {
+        service.updateOrderStatusClose(id);
+    }
 }

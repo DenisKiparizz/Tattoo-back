@@ -1,5 +1,6 @@
 package com.tattoo.com.entity.order;
 
+import com.tattoo.com.entity.review.Review;
 import com.tattoo.com.entity.tattoo.Tattoo;
 import com.tattoo.com.entity.user.User;
 import lombok.AllArgsConstructor;
@@ -8,19 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -44,8 +33,15 @@ public class Order {
     @Column(name = "created")
     private Date created;
 
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private EStatus status;
+
     @Column(name = "price")
     private Double price;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.REMOVE)
+    private Review review;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tattoo_id")
