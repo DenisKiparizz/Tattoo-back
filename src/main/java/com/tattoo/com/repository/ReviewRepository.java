@@ -1,5 +1,6 @@
 package com.tattoo.com.repository;
 
+import com.tattoo.com.dto.ReviewUtilDto;
 import com.tattoo.com.entity.review.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,6 +1,7 @@
 package com.tattoo.com.service.impl;
 
 import com.tattoo.com.dto.ReviewDto;
+import com.tattoo.com.dto.ReviewUtilDto;
 import com.tattoo.com.entity.order.Order;
 import com.tattoo.com.entity.review.Review;
 import com.tattoo.com.entity.user.User;
@@ -45,6 +46,9 @@ public class ReviewServiceImpl implements ReviewService {
         reviewRepository.save(review);
     }
 
+    /**
+     * This is util method for "create"
+     */
     private void setUserForReview(ReviewDto reviewDto, Set<User> userSet) {
         userSet.add(userRepository.findUserById(reviewDto.getUserId())
                 .orElseThrow(() -> new UsernameNotFoundException("User with this id not found")));
@@ -56,5 +60,9 @@ public class ReviewServiceImpl implements ReviewService {
                 .filter(review -> review.getOrder().getId().equals(id))
                 .map(reviewMapper::toDto)
                 .findFirst();
+    }
+
+    public void delete(Long id) {
+        reviewRepository.deleteById(id);
     }
 }

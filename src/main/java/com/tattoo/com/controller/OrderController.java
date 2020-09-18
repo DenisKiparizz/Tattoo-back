@@ -23,6 +23,12 @@ public class OrderController {
 
     @GetMapping("{id}")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    public OrderDto getById(@PathVariable Long id) {
+        return service.getById(id);
+    }
+
+    @GetMapping("/user{id}")
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public List<OrderDto> getByUserId(@PathVariable Long id) {
         return service.getByUserId(id);
     }
@@ -46,7 +52,7 @@ public class OrderController {
     }
 
     @PutMapping("{id}")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void updateOrderStatusClose(@PathVariable Long id) {
         service.updateOrderStatusClose(id);
     }

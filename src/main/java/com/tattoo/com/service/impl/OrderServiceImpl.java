@@ -5,6 +5,7 @@ import com.tattoo.com.entity.order.EStatus;
 import com.tattoo.com.entity.order.Order;
 import com.tattoo.com.entity.tattoo.Tattoo;
 import com.tattoo.com.entity.user.User;
+import com.tattoo.com.exception.OrderNotFoundException;
 import com.tattoo.com.exception.TattooNotFoundException;
 import com.tattoo.com.mapper.OrderMapper;
 import com.tattoo.com.repository.OrderRepository;
@@ -39,6 +40,13 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(readOnly = true)
     public List<OrderDto> getAll() {
         return mapper.mapList(orderRepository.findAll());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public OrderDto getById(Long id) {
+        return mapper.toDto(orderRepository.findById(id)
+                .orElseThrow(() -> new OrderNotFoundException(id)));
     }
 
     @Override
