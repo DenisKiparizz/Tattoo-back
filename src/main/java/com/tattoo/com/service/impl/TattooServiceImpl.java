@@ -38,6 +38,7 @@ public class TattooServiceImpl implements TattooService {
     }
     /**
      * This is method for update each tattoo
+     * Must be FIX
      */
     private Tattoo updateEachTattoo(TattooRequest tattooRequest, Tattoo tattoo) {
         ModelMapper mapper = new ModelMapper();
@@ -55,10 +56,8 @@ public class TattooServiceImpl implements TattooService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Tattoo> getByStyleId(Long style) {
-        return tattooRepository.findAll().stream()
-                .filter(tattoo -> tattoo.getStyle().getId().equals(style))
-                .collect(Collectors.toList());
+    public List<Tattoo> getByStyleId(Long styleId) {
+        return tattooRepository.getTattooByStyleId(styleId);
     }
 
     @Override

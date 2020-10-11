@@ -12,10 +12,8 @@ import com.tattoo.com.service.PartOfBodyService;
 import com.tattoo.com.service.TattooService;
 import com.tattoo.com.service.UserService;
 import com.tattoo.com.validation.OrderValidation;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.Date;

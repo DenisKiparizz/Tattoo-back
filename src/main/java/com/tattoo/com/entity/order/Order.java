@@ -47,7 +47,7 @@ public class Order {
     @JoinColumn(name = "tattoo_id")
     private Tattoo tattoo;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "order_user",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))

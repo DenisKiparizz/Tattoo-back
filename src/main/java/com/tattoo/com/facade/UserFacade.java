@@ -11,8 +11,8 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class UserFacade {
-    public final UserMapper userMapper;
-    public final UserService userService;
+    private final UserMapper userMapper;
+    private final UserService userService;
 
     public List<UserDto> getAll() {
         return userMapper.mapListToDto(userService.getAll());

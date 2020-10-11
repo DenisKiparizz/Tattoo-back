@@ -2,27 +2,23 @@ package com.tattoo.com.facade;
 
 import com.tattoo.com.dto.TattooDto;
 import com.tattoo.com.dto.request.TattooRequest;
-import com.tattoo.com.entity.tattoo.Style;
 import com.tattoo.com.entity.tattoo.Tattoo;
 import com.tattoo.com.mapper.StyleMapper;
 import com.tattoo.com.mapper.TattooMapper;
 import com.tattoo.com.service.TattooService;
 import com.tattoo.com.validation.TattooValidation;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class TattooFacade {
-    public final TattooService tattooService;
-    public final TattooMapper tattooMapper;
-    public final TattooValidation validation;
-    public final StyleMapper styleMapper;
+    private final TattooService tattooService;
+    private final TattooMapper tattooMapper;
+    private final TattooValidation validation;
+    private final StyleMapper styleMapper;
 
     public List<TattooDto> getAll() {
         return tattooMapper.mapListToDto(tattooService.getAll());
@@ -36,7 +32,7 @@ public class TattooFacade {
     }
 
     /**
-     *Have to Fix
+     * Have to Fix
      */
     public TattooDto update(Long id, TattooRequest request) {
         validation.checkPositiveId(id);

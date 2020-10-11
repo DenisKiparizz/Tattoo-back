@@ -21,10 +21,10 @@ import java.util.Set;
 @Component
 @RequiredArgsConstructor
 public class ReviewFacade {
-    public final ReviewService reviewService;
-    public final UserService userService;
-    public final OrderService orderService;
-    public final ReviewMapper reviewMapper;
+    private final ReviewService reviewService;
+    private final UserService userService;
+    private final OrderService orderService;
+    private final ReviewMapper reviewMapper;
 
     public List<ReviewDto> getAll() {
         return reviewMapper.mapList(reviewService.getAll());

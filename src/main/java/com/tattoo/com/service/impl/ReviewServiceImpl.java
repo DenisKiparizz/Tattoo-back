@@ -2,10 +2,7 @@ package com.tattoo.com.service.impl;
 
 import com.tattoo.com.entity.review.Review;
 import com.tattoo.com.exception.ReviewNotFoundException;
-import com.tattoo.com.mapper.ReviewMapper;
-import com.tattoo.com.repository.OrderRepository;
 import com.tattoo.com.repository.ReviewRepository;
-import com.tattoo.com.repository.UserRepository;
 import com.tattoo.com.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

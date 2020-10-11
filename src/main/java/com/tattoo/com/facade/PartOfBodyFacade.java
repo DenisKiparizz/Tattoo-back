@@ -3,10 +3,8 @@ package com.tattoo.com.facade;
 import com.tattoo.com.dto.PartOfBodyDto;
 import com.tattoo.com.mapper.PartOfBodyMapper;
 import com.tattoo.com.service.PartOfBodyService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
