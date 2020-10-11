@@ -2,7 +2,6 @@ package com.tattoo.com.dto;
 
 import com.tattoo.com.entity.order.EPartOfBody;
 import com.tattoo.com.entity.order.EStatus;
-import com.tattoo.com.entity.user.User;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

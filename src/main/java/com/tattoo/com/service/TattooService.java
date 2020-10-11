@@ -2,12 +2,20 @@ package com.tattoo.com.service;
 
 import com.tattoo.com.dto.TattooDto;
 import com.tattoo.com.dto.request.TattooRequest;
+import com.tattoo.com.entity.tattoo.Tattoo;
 
 import java.util.List;
 
-public interface TattooService extends CrudService<TattooDto, TattooRequest> {
+public interface TattooService {
+    List<Tattoo> getAll();
 
-    List<TattooDto> getByStyleId(Long id);
+    Tattoo create(Tattoo tattoo);
 
-    TattooDto getById(Long id);
+    Tattoo update(Long id, TattooRequest request);
+
+    void delete(Long id);
+
+    List<Tattoo> getByStyleId(Long id);
+
+    Tattoo getById(Long id);
 }

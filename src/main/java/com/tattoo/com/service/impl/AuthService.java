@@ -25,6 +25,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Nice to have to add FASAD
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthService {

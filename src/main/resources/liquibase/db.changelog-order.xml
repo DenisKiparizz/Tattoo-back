@@ -3,14 +3,61 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="6.1.3" author="Denis Solodkiy">
-        <createTable tableName="orders">
+    <changeSet id="12.5.3" author="Denis Solodkiy">
+        <createTable tableName="part_of_body">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
             <column name="part" type="VARCHAR(30)">
                 <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="rate" type="DOUBLE">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+        </createTable>
+        <rollback>
+            <dropTable tableName="part_of_body"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="12.11.4" author="Denis Solodkiy">
+        <insert tableName="part_of_body">
+            <column name="part" value="FOOT"/>
+            <column name="rate" value='1.1'/>
+        </insert>
+        <insert tableName="part_of_body">
+            <column name="part" value="LEG"/>
+            <column name="rate" value='2.1'/>
+        </insert>
+        <insert tableName="part_of_body">
+            <column name="part" value="ARM"/>
+            <column name="rate" value='2.2'/>
+        </insert>
+        <insert tableName="part_of_body">
+            <column name="part" value="HAND"/>
+            <column name="rate" value='1.3'/>
+        </insert>
+        <insert tableName="part_of_body">
+            <column name="part" value="STOMACH"/>
+            <column name="rate" value='3.2'/>
+        </insert>
+        <insert tableName="part_of_body">
+            <column name="part" value="CHEST"/>
+            <column name="rate" value='2.8'/>
+        </insert>
+        <insert tableName="part_of_body">
+            <column name="part" value="NECK"/>
+            <column name="rate" value='4.6'/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="6.1.3" author="Denis Solodkiy">
+        <createTable tableName="orders">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
             </column>
 
             <column name="price" type="DOUBLE">
@@ -27,6 +74,10 @@
 
             <column name="tattoo_id" type="BIGINT">
                 <constraints nullable="true" foreignKeyName="tattoo_id" references="tattoos(id)"/>
+            </column>
+
+            <column name="part_of_body_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="part_of_body_id" references="part_of_body(id)"/>
             </column>
 
         </createTable>

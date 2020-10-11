@@ -25,10 +25,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "part")
-    @Enumerated(EnumType.STRING)
-    private EPartOfBody part;
-
     @CreatedDate
     @Column(name = "created")
     private Date created;
@@ -39,6 +35,10 @@ public class Order {
 
     @Column(name = "price")
     private Double price;
+
+    @OneToOne
+    @JoinColumn(name = "part_of_body_id", referencedColumnName = "id")
+    private PartOfBody partOfBody;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.REMOVE)
     private Review review;

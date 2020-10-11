@@ -3,15 +3,18 @@ package com.tattoo.com.service.impl;
 import com.tattoo.com.dto.OrderDto;
 import com.tattoo.com.entity.order.EStatus;
 import com.tattoo.com.entity.order.Order;
+import com.tattoo.com.entity.order.PartOfBody;
 import com.tattoo.com.entity.tattoo.Tattoo;
 import com.tattoo.com.entity.user.User;
 import com.tattoo.com.exception.OrderNotFoundException;
-import com.tattoo.com.exception.TattooNotFoundException;
 import com.tattoo.com.mapper.OrderMapper;
+import com.tattoo.com.mapper.PartOfBodyMapper;
+import com.tattoo.com.mapper.TattooMapper;
 import com.tattoo.com.repository.OrderRepository;
-import com.tattoo.com.repository.TattooRepository;
 import com.tattoo.com.repository.UserRepository;
 import com.tattoo.com.service.OrderService;
+import com.tattoo.com.service.PartOfBodyService;
+import com.tattoo.com.service.TattooService;
 import com.tattoo.com.validation.OrderValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,15 +28,21 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Create directory like a FASADE and add this layer
+ */
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
-    private final TattooRepository tattooRepository;
-    private final UserRepository userRepository;
     private final OrderMapper mapper;
+    private final TattooService tattooRepository;
+    private final TattooService tattooService;
+    private final TattooMapper tattooMapper;
+    private final UserRepository userRepository;
+    private final PartOfBodyService partOfBodyService;
     private final OrderValidation orderValidation;
 
     @Override
@@ -51,41 +60,42 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void create(OrderDto orderDto) {
-        orderValidation.validate(orderDto);
+//        orderValidation.validate(orderDto);
         Set<User> userSet = new HashSet<>();
         setUserForOrder(orderDto, userSet);
-        Order order = mapper.toResource(orderDto);
-        order.setStatus(EStatus.ACTIVE);
+        var order = mapper.toResource(orderDto);
+        var partOfBody = getPartOfBody(orderDto);
+        var tattoo = getTattoo(orderDto);
+
         order.setUsers(userSet);
-        setDefaultOrderValues(order);
+        order.setStatus(EStatus.ACTIVE);
+        order.setPartOfBody(getPartOfBody(orderDto));
+        order.setCreated(Date.from(Instant.now()));
+        order.setPrice(Math.round(partOfBody.getRate() * tattoo.getCost() * 100.0) / 100.0);
         orderRepository.save(order);
     }
 
     /**
      * This is util method for "create"
-     *
-     * @param order = this param generate in method "create"
-     *              In this case we set price and date param appropriate business logic
-     *              Date - now
-     *              Price - calculate according value in EPartOfBody
      */
-    private void setDefaultOrderValues(Order order) {
-        Tattoo cost = tattooRepository
-                .findById(order.getTattoo().getId())
-                .orElseThrow(() -> new TattooNotFoundException(order.getTattoo().getId()));
-        order.setPrice(Math.round(order.getPart().value * cost.getCost() * 100.0) / 100.0);
-        order.setCreated(Date.from(Instant.now()));
+    private Tattoo getTattoo(OrderDto orderDto) {
+        return tattooService.getById(orderDto.getTattooId());
     }
 
     /**
      * This is util method for "create"
-     *
-     * @param orderDto - took from "create"
-     * @param userSet  - took from "create"
+     */
+    private PartOfBody getPartOfBody(OrderDto orderDto) {
+        return partOfBodyService.getByPart(orderDto.getPart());
+    }
+
+    /**
+     * This is util method for "create"
      */
     private void setUserForOrder(OrderDto orderDto, Set<User> userSet) {
         userSet.add(userRepository.findUserById(orderDto.getUserId())
-                .orElseThrow(() -> new UsernameNotFoundException("User with this id not found")));
+                .orElseThrow(() ->
+                        new UsernameNotFoundException("User with this id not found")));
     }
 
     @Override
@@ -97,7 +107,6 @@ public class OrderServiceImpl implements OrderService {
                 .filter(orderDto -> orderDto.getUserId().equals(id))
                 .collect(Collectors.toList());
     }
-
 
     @Override
     public void delete(Long id) {

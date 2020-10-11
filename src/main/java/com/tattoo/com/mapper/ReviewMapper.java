@@ -1,8 +1,6 @@
 package com.tattoo.com.mapper;
 
-import com.tattoo.com.dto.OrderDto;
 import com.tattoo.com.dto.ReviewDto;
-import com.tattoo.com.entity.order.Order;
 import com.tattoo.com.entity.review.Review;
 import com.tattoo.com.entity.user.User;
 import lombok.RequiredArgsConstructor;

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-
+@Builder(builderClassName = "Builder")
 @Entity
 @Getter
 @Setter
