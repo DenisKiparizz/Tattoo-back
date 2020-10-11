@@ -1,9 +1,7 @@
 package com.tattoo.com.controller;
 
 import com.tattoo.com.dto.ReviewDto;
-import com.tattoo.com.dto.ReviewUtilDto;
-import com.tattoo.com.entity.review.Review;
-import com.tattoo.com.service.ReviewService;
+import com.tattoo.com.facade.ReviewFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -16,29 +14,29 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("review")
 public class ReviewController {
-    private final ReviewService reviewService;
+    private final ReviewFacade reviewFacade;
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public List<ReviewDto> getAll() {
-        return reviewService.getAll();
+        return reviewFacade.getAll();
     }
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public void create(@RequestBody ReviewDto reviewDto) {
-        reviewService.create(reviewDto);
+        reviewFacade.create(reviewDto);
     }
 
     @GetMapping("{id}")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public Optional<ReviewDto> getReviewByOrderId(@PathVariable Long id) {
-        return reviewService.getReviewByOrderId(id);
+        return reviewFacade.getReviewByOrderId(id);
     }
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public void delete(@PathVariable Long id) {
-        reviewService.delete(id);
+        reviewFacade.delete(id);
     }
 }

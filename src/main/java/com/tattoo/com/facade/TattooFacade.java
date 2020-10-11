@@ -9,13 +9,15 @@ import com.tattoo.com.mapper.TattooMapper;
 import com.tattoo.com.service.TattooService;
 import com.tattoo.com.validation.TattooValidation;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@AllArgsConstructor
+@Component
+@RequiredArgsConstructor
 public class TattooFacade {
     public final TattooService tattooService;
     public final TattooMapper tattooMapper;

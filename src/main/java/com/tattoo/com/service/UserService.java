@@ -1,13 +1,13 @@
 package com.tattoo.com.service;
 
-import com.tattoo.com.dto.UserDto;
+import com.tattoo.com.entity.user.User;
 
 import java.util.List;
 
 public interface UserService {
-    List<UserDto> getAll();
+    List<User> getAll();
 
-    UserDto getById(Long id);
+    User getById(Long id);
 
     void delete(Long id);
 }

@@ -4,12 +4,14 @@ import com.tattoo.com.dto.PartOfBodyDto;
 import com.tattoo.com.mapper.PartOfBodyMapper;
 import com.tattoo.com.service.PartOfBodyService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@AllArgsConstructor
+@Component
+@RequiredArgsConstructor
 public class PartOfBodyFacade {
     private final PartOfBodyService partOfBodyService;
     private final PartOfBodyMapper mapper;

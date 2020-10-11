@@ -4,11 +4,12 @@ import com.tattoo.com.dto.StyleDto;
 import com.tattoo.com.mapper.StyleMapper;
 import com.tattoo.com.service.StyleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class StyleFacade {
     public final StyleService styleService;
