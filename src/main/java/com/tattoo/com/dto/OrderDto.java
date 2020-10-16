@@ -17,7 +17,7 @@ import java.util.Date;
 public class OrderDto {
     @ApiModelProperty(hidden = true)
     private Long id;
-    private EPartOfBody part;
+    private String part;
     @ApiModelProperty(hidden = true)
     private Double price;
     private EStatus status;

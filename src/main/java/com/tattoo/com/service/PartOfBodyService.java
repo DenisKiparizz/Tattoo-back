@@ -10,5 +10,5 @@ public interface PartOfBodyService {
 
     PartOfBody getById(Long id);
 
-    PartOfBody getByPart(EPartOfBody part);
+    PartOfBody getByPart(String part);
 }

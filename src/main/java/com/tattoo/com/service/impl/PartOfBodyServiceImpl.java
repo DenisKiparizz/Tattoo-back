@@ -30,8 +30,8 @@ public class PartOfBodyServiceImpl implements PartOfBodyService {
     }
 
     @Transactional(readOnly = true)
-    public PartOfBody getByPart(EPartOfBody part) {
-        return partOfBodyRepository.findByPart(part).orElseThrow(()
-                -> new PartOfBodyNotFoundException(part));
+    public PartOfBody getByPart(String part) {
+        return partOfBodyRepository.findByPart(EPartOfBody.find(part)).orElseThrow(()
+                -> new PartOfBodyNotFoundException(EPartOfBody.find(part)));
     }
 }

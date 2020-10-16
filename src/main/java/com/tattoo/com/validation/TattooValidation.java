@@ -12,7 +12,7 @@ public class TattooValidation implements ValidatorInterface<TattooInterface> {
     private static final Integer MIN = 2;
 
     @Override
-    public void  validate(TattooInterface tattooDto) {
+    public void validate(TattooInterface tattooDto) {
         List<String> list = Arrays.asList(
                 tattooDto.getPicture(),
                 tattooDto.getDescription(),
